@@ -2,20 +2,18 @@ import { ApolloServer } from 'apollo-server-express';
 import { mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
 import { PubSub } from 'graphql-subscriptions';
 
-import { helloWorldTypeDefs, helloWorldResolvers } from '~/hello-world/graphql';
-import { listTypeDefs, listResolvers } from '~/crud-operations/graphql';
+import { crudTypeDefs, crudResolvers } from '~/crud-operations/graphql';
 import authentication from '~/authentication/graphql';
 
 const typeDefs = mergeTypes(
-  [helloWorldTypeDefs, listTypeDefs, authentication.typeDefs],
+  [crudTypeDefs, authentication.typeDefs],
   {
     all: true,
   },
 );
 
 const resolvers = mergeResolvers([
-  helloWorldResolvers,
-  listResolvers,
+  crudResolvers,
   authentication.resolvers,
 ]);
 

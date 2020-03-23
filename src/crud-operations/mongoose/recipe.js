@@ -6,7 +6,7 @@ const recipeSchema = new Schema({
         required: true,
     },
     temp: {
-        type: String,
+        type: Number,
         required: true,
     },
     time: {
