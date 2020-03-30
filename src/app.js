@@ -11,6 +11,7 @@ import rendertron from 'rendertron-middleware';
 import history from 'express-history-api-fallback';
 import * as Sentry from '@sentry/node';
 
+import routes from '~/core/rest';
 import apolloServer from '~/core/graphql';
 import passport from '~/core/passport';
 import redis from '~/core/redis';
@@ -42,6 +43,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 if (NODE_ENV === 'production') app.use(Sentry.Handlers.requestHandler());
+
+/**
+ * @name REST
+ */
+app.use('/', routes);
 
 /**
  * @name GraphQL
